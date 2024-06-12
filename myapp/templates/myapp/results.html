@@ -1,0 +1,19 @@
+{% extends 'myapp/base.html' %}
+
+{% block content %}
+  <h1>Data Analysis Results</h1>
+  <h2>Summary Statistics</h2>
+  {{ summary_stats|safe }}
+  <h2>First Few Rows</h2>
+  {{ first_rows|safe }}
+  <h2>Missing Values</h2>
+  <ul>
+  {% for key, value in missing_values.items %}
+      <li>{{ key }}: {{ value }}</li>
+  {% endfor %}
+  </ul>
+  <h2>Histograms</h2>
+  {% for plot in plots %}
+      <img src="data:image/png;base64,{{ plot }}" alt="Histogram">
+  {% endfor %}
+{% endblock %}
